@@ -8,13 +8,11 @@ const userSchema = new Schema(
     firstname: String,
     lastname: String,
     username: {
-      type: String,
-      required: true
+      type: String
     },
     password: String,
     email: {
-      type: String,
-      unique:true
+      type: String
     }
   },
   { timestamps: true }

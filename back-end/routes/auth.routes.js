@@ -1,31 +1,52 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../model/User')
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const cors = require('cors');
+// app.use(cors());
+// app.use(bodyParser.json());
 
-router.get("/", (req, res) => {
-  
-  res.json({msg: "success get", "body": req.body})
-  
- 
-});
+
 
 router.post("/", (req, res) => {
 
+ 
+
 let user = new User({
-firstname: req.body.first_name,
-lastname: req.body.last_name,
+firstname: req.body.firstname,
+lastname: req.body.lastname,
 password: req.body.password,
-username: req.body.display_name,
+username: req.body.username,
 email: req.body.email
 })
 user.save().then(()=>{
-  res.json({msg: "success post"})
+  res.json({msg: "success post" , "body": req.body })
   console.log(req.body)
-}).catch(()=>{
-console.log("i'm not fine fix me ")
+}).catch((err)=>{
+console.log(err)
 })
+});
+
+
+router.get("/", (req, res) => {
+
+  User.find()
+  .then(data =>{
+    res.json({msg: "success get", "body": data})
+  })
+});
+
+
+
+router.get('/', function(req, res) {
+  Todo.find(function(err, todos) {
+      if (err) {
+          console.log(err);
+      } else {
+          res.json(todos);
+      }
+  });
 });
 
 // router.get("/login", (req, res) => {

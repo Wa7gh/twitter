@@ -45,7 +45,9 @@ export class App extends Component {
     const { data } = this.state;
     return (
       <div>
-      <ul>
+
+        { data}
+      {/* <ul>
         {data.length <= 0
           ? 'NO DB ENTRIES YET'
           : data.map((dat) => (
@@ -55,7 +57,7 @@ export class App extends Component {
                 {dat.message}
               </li>
             ))}
-      </ul>
+      </ul> */}
       </div>
     )
   }
